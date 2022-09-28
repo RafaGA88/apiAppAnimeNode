@@ -1,4 +1,5 @@
-import app from './app';
+const app = require('./app');
+require('./src/database');
 
 const port = 3001;
 app.listen(port, () => {
