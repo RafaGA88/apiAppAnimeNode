@@ -5,6 +5,7 @@ require('./src/database');
 const express = require('express');
 const homeRoutes = require('./src/routes/homeRoutes');
 const listagemRoutes = require('./src/routes/listagemRoutes');
+const loginRotes = require('./src/routes/loginRoutes');
 
 class App {
   constructor() {
@@ -21,6 +22,7 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/listagem', listagemRoutes);
+    this.app.use('/login', loginRotes);
   }
 }
 
