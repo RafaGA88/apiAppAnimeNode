@@ -3,7 +3,6 @@ const animeController = require('../controllers/AnimeController');
 
 const router = new Router();
 
-router.post('/', animeController.criaAnime);
-router.get('/', animeController.principaisAnimes);
+router.get('/', animeController.listagemAnimes);
 
 module.exports = router;

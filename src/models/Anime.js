@@ -1,15 +1,48 @@
-import { DataType, Model } from 'sequelize';
+const { DataTypes, Model } = require('sequelize');
 
-export default class Anime extends Model {
+class Anime extends Model {
   static init(sequelize) {
     super.init({
-      titulo: DataType.STRING,
-      categoria: DataType.STRING,
-      descricao: DataType.TEXT,
-      data_lancamento: DataType.DATEONLY,
+      titulo: {
+        type: DataTypes.STRING,
+        defaultValue: ' ',
+        validate: {
+          notEmpty: {
+            msg: 'Campo titulo não pode ficar vazio',
+          },
+        },
+      },
+      categoria: {
+        type: DataTypes.STRING,
+        defaultValue: ' ',
+        validate: {
+          notEmpty: {
+            msg: 'Campo categoria não pode ficar vazio',
+          },
+        },
+      },
+      descricao: {
+        type: DataTypes.TEXT,
+        defaultValue: ' ',
+        validate: {
+          notEmpty: {
+            msg: 'Campo descrição não pode ficar vazio',
+          },
+        },
+      },
+      data_lancamento: {
+        type: DataTypes.DATEONLY,
+        defaultValue: ' ',
+        validate: {
+          notEmpty: {
+            msg: 'Campo data de lançamento não pode ficar vazio',
+          },
+        },
+      },
     }, {
       sequelize,
     });
-    return this;
   }
 }
+
+module.exports = Anime;

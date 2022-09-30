@@ -1,9 +1,10 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv');
 
 dotenv.config();
-import './src/database';
-import express from 'express';
-import homeRoutes from './src/routes/homeRoutes';
+require('./src/database');
+const express = require('express');
+const homeRoutes = require('./src/routes/homeRoutes');
+const listagemRoutes = require('./src/routes/listagemRoutes');
 
 class App {
   constructor() {
@@ -19,7 +20,9 @@ class App {
 
   routes() {
     this.app.use('/', homeRoutes);
+    this.app.use('/listagem', listagemRoutes);
   }
 }
 
-export default new App().app;
+const { app } = new App();
+module.exports = app;
