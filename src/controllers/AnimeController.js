@@ -18,7 +18,7 @@ class AnimeController {
   }
 
   async listagemAnimes(req, res) {
-    const consulta = await Anime.findAll();
+    const consulta = await Anime.findAll({ order: ['titulo'] });
     return res.json(consulta);
   }
 }
