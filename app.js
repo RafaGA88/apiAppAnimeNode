@@ -6,7 +6,7 @@ require('./src/database');
 const express = require('express');
 const homeRoutes = require('./src/routes/homeRoutes');
 const listagemRoutes = require('./src/routes/listagemRoutes');
-const loginRotes = require('./src/routes/loginRoutes');
+const cadastroRotes = require('./src/routes/cadastroRoutes');
 const cadastrarEpRoutes = require('./src/routes/cadastrarEpRoutes');
 const tokenRoutes = require('./src/routes/tokenRoutes');
 
@@ -25,7 +25,7 @@ class App {
   routes() {
     this.app.use('/', homeRoutes);
     this.app.use('/listagem', listagemRoutes);
-    this.app.use('/login', loginRotes);
+    this.app.use('/cadastro', cadastroRotes);
     this.app.use('/cadastrar_episodio', cadastrarEpRoutes);
     this.app.use('/tokens', tokenRoutes);
   }
