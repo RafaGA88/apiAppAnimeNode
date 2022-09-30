@@ -17,16 +17,6 @@ class Episodio extends Model {
           },
         },
       },
-      anime_id: {
-        type: DataTypes.INTEGER,
-        defaultValue: ' ',
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'Campo do Anime não pode ficar em branco',
-          },
-        },
-      },
       video: {
         type: DataTypes.STRING,
         defaultValue: ' ',
@@ -49,7 +39,12 @@ class Episodio extends Model {
       },
     }, {
       sequelize,
+      tableName: 'episodio',
     });
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Anime, { foreignKey: 'anime_id' });
   }
 }
 

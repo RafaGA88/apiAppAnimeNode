@@ -5,28 +5,24 @@ const multerConfig = require('../config/multer');
 const upload = multer(multerConfig).single('arquivo');
 
 class EpisodioController {
-  async criaEpisodio(req, res) {
-    try {
-      return upload(req, res, async (error) => {
-        if (error) {
-          return res.status(400).json({
-            errors: [error.code],
-          });
-        }
-        const ep = {
-          // eslint-disable-next-line max-len
-          nome: req.body.nome, anime_id: req.body.anime_id, video: req.file.filename, numero_episodio: req.body.numero_episodio,
-        };
-        const episodio = await Episodio.create(ep);
+  criaEpisodio(req, res) {
+    return upload(req, res, async (error) => {
+      if (error) {
+        return res.status(400).json({
+          errors: [error.code],
+        });
+      }
 
-        return res.json(episodio);
+      const { nome, anime_id, numero_episodio } = req.body;
+      const { filename } = req.file;
+
+      const episodio = await Episodio.create({
+        nome, anime_id, video: filename, numero_episodio,
       });
-    } catch (error) {
-      return res.status(400).json({
-        errors: error.errors.map((err) => err.message),
-      });
-    }
+      return res.json(episodio);
+    });
   }
 }
+
 const episodioController = new EpisodioController();
 module.exports = episodioController;
