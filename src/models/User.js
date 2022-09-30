@@ -21,10 +21,10 @@ class User extends Model {
       email: {
         type: DataTypes.STRING,
         defaultValue: ' ',
+        unique: {
+          msg: 'Email já existe',
+        },
         validate: {
-          unique: {
-            msg: 'Email já existe',
-          },
           isEmail: {
             msg: 'Email invalido',
           },
