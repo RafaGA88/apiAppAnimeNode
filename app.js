@@ -1,4 +1,5 @@
 const dotenv = require('dotenv');
+const { resolve } = require('path');
 
 dotenv.config();
 require('./src/database');
@@ -9,6 +10,8 @@ const listagemRoutes = require('./src/routes/listagemRoutes');
 const cadastroRotes = require('./src/routes/cadastroRoutes');
 const cadastrarEpRoutes = require('./src/routes/cadastrarEpRoutes');
 const tokenRoutes = require('./src/routes/tokenRoutes');
+const comentarioRoutes = require('./src/routes/comentarioRoutes');
+const episodioRoutes = require('./src/routes/episodioRoutes');
 
 class App {
   constructor() {
@@ -20,6 +23,7 @@ class App {
   middlewares() {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
+    this.app.use(express.static(resolve(__dirname, 'uploads')));
   }
 
   routes() {
@@ -28,6 +32,8 @@ class App {
     this.app.use('/cadastro', cadastroRotes);
     this.app.use('/cadastrar_episodio', cadastrarEpRoutes);
     this.app.use('/tokens', tokenRoutes);
+    this.app.use('/comentario', comentarioRoutes);
+    this.app.use('/episodio', episodioRoutes);
   }
 }
 

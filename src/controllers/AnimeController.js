@@ -13,6 +13,14 @@ class AnimeController {
   }
 
   async principaisAnimes(req, res) {
+    if (req.params.id) {
+      const { id } = req.params;
+
+      const consulta = await Anime.findByPk(~~id);
+
+      return res.json(consulta);
+    }
+
     const consulta = await Anime.findOne();
     return res.json(consulta);
   }

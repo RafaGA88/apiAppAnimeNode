@@ -22,6 +22,17 @@ class EpisodioController {
       return res.json(episodio);
     });
   }
+
+  async getEpisodio(req, res) {
+    if (req.params.id) {
+      const { id } = req.params;
+
+      const episodio = await Episodio.findByPk(~~id);
+
+      return res.json(episodio);
+    }
+    return res.json(null);
+  }
 }
 
 const episodioController = new EpisodioController();

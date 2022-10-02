@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
+const appConfig = require('../config/appConfig');
 
 class Episodio extends Model {
   static init(sequelize) {
@@ -25,6 +26,12 @@ class Episodio extends Model {
           notNull: {
             msg: 'Campo do Video não pode ficar em branco',
           },
+        },
+      },
+      url: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${appConfig.url}/video/${this.getDataValue('video')}`;
         },
       },
       numero_episodio: {
