@@ -1,4 +1,4 @@
-## `Site de Animes em Node + React Native`
+## `API site de animes em NodeJS`
 Projeto Similar ao => https://github.com/RafaGA88/projetoFdsCesarSchool
 
 ### `Desenvolvedor:`
