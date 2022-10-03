@@ -3,6 +3,8 @@ const { resolve } = require('path');
 
 dotenv.config();
 require('./src/database');
+const cors = require('cors');
+const helmet = require('helmet');
 
 const express = require('express');
 const homeRoutes = require('./src/routes/homeRoutes');
@@ -24,6 +26,8 @@ class App {
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use(express.static(resolve(__dirname, 'uploads')));
+    this.app.use(cors());
+    this.app.use(helmet());
   }
 
   routes() {
